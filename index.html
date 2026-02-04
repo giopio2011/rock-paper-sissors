@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <script>
+            function getcumputer(){
+                if(random <= 0.4){
+                    ropasi = "rock";
+                }
+                
+                if( random >= 0.7){
+                    ropasi = "scissors"
+                } if(random < 0.7 && random > 0.4){
+                    ropasi= "paper"
+                }
+            }
+            function gethumaninput(){
+                while(input != "rock" && input != "paper" && input != "scissors"){
+                    input = String(prompt("please inter one of the three: rock/paper/scissors "));
+                }
+                
+            }
+            let random;
+            let ropasi;
+            let player;
+            playgame()
+            function playgame() {
+                
+            
+                let cumputer = 0;
+                let player = 0;
+                for (let i = 0; i<= 5;i++){
+                    playround();
+                }
+                function playround(){
+                    random = Math.random();
+                    ropasi = "none";
+                    input = "none";
+                    getcumputer();
+                    gethumaninput();
+                    if(input == ropasi){
+                        player++;
+                        cumputer++;
+                    } if(ropasi == "rock" && input == "scissors"){
+                        cumputer++;
+                    } if(ropasi == "scissors" && input == "paper"){
+                        cumputer++;
+                    } if(ropasi == "paper" && input == "rock"){
+                        cumputer++;
+                    }
+                    if(input == "rock" && ropasi == "scissors"){
+                        player++;
+                    } if(input == "scissors" && ropasi == "paper"){
+                        player++;
+                    } if(input == "paper" && ropasi == "rock"){
+                        player++;
+                    }
+                }
+                if(cumputer==player){
+                    console.log("tie");
+                } if(player>cumputer){
+                    console.log("won");
+                } if(player<cumputer){
+                    console.log("lost");
+                }
+            }
+                
+        </script>
+    </body>
+</html>
