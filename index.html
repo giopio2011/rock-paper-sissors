@@ -1,42 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
+        <button type="button" class="paper">paper </button>
+        <button type="button" class="rock">rock </button>
+        <button type="button" class="scissors">scissors </button>
+        <div class="home"></div>
         <script>
+            let random;
+            let ropasi = "none";
+            let player;
+            let trueorfalse = false;
+                
+            let input = "none";
+            let rock = document.body.querySelector("button.rock")
+            let scissors = document.body.querySelector("button.scissors")
+            let paper = document.body.querySelector("button.paper")
+            let shell = document.body.querySelector(".home")
+            console.log(rock + "," + paper + "," + scissors)
+            
+            
+            console.log(input)
             function getcumputer(){
                 if(random <= 0.4){
                     ropasi = "rock";
                 }
-                
+            
                 if( random >= 0.7){
                     ropasi = "scissors"
                 } if(random < 0.7 && random > 0.4){
                     ropasi= "paper"
                 }
             }
-            function gethumaninput(){
-                while(input != "rock" && input != "paper" && input != "scissors"){
-                    input = String(prompt("please inter one of the three: rock/paper/scissors "));
-                }
-                
-            }
-            let random;
-            let ropasi;
-            let player;
+            let div = document.createElement("div");
             playgame()
             function playgame() {
-                
             
+        
                 let cumputer = 0;
                 let player = 0;
-                for (let i = 0; i<= 5;i++){
-                    playround();
-                }
+                    rock.addEventListener("click", () => {
+                        input = "rock";
+                        playround();
+                        
+                    });
+                    paper.addEventListener("click", () => {
+                        input = "paper";
+                        playround();                
+                    });
+                    scissors.addEventListener("click", () => {
+                        input = "scissors";
+                        playround();
+                    });
+                    
+                
                 function playround(){
+                
+                
+
                     random = Math.random();
-                    ropasi = "none";
-                    input = "none";
+                
                     getcumputer();
-                    gethumaninput();
                     if(input == ropasi){
                         player++;
                         cumputer++;
@@ -54,14 +77,20 @@
                     } if(input == "paper" && ropasi == "rock"){
                         player++;
                     }
+                    if(player + cumputer == 5){
+                        if(cumputer==player){
+                            div.textContent = "tie";
+                        } if(player>cumputer){
+                            div.textContent = "won";
+                        } if(player<cumputer){
+                            div.textContent = "lost"
+                        }
+                    }
+                    shell.appendChild(div)
+                
                 }
-                if(cumputer==player){
-                    console.log("tie");
-                } if(player>cumputer){
-                    console.log("won");
-                } if(player<cumputer){
-                    console.log("lost");
-                }
+                
+                
             }
                 
         </script>
